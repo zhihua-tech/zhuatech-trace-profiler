@@ -1,0 +1,76 @@
+{
+  "title": "知华模型调用链耗时分析",
+  "english": "LLM Trace Profiler",
+  "scene": "推理性能排查",
+  "description": "验证调用树、时间边界，合并并行子区间，计算每段独占耗时并列出热点。",
+  "limit": "分析已采集的单根 trace，不自动接管线上 SDK；时间单位为同一时钟的毫秒。",
+  "settings": {},
+  "rows": [
+    {
+      "id": "chat",
+      "parent": "",
+      "start": 0,
+      "end": 350
+    },
+    {
+      "id": "retrieve",
+      "parent": "chat",
+      "start": 10,
+      "end": 150
+    },
+    {
+      "id": "rerank",
+      "parent": "chat",
+      "start": 90,
+      "end": 200
+    },
+    {
+      "id": "infer",
+      "parent": "chat",
+      "start": 200,
+      "end": 340
+    }
+  ],
+  "labels": {
+    "id": "编号",
+    "text": "正文",
+    "unit": "对齐单位",
+    "label": "类别",
+    "minConfidence": "置信度下限",
+    "reference": "参考稿",
+    "hypothesis": "识别稿",
+    "size": "窗口长度",
+    "overlap": "重叠长度",
+    "gpuGiB": "设备显存 GiB",
+    "reserveGiB": "预留 GiB",
+    "paramsB": "参数量（十亿）",
+    "weightBits": "权重位宽",
+    "layers": "层数",
+    "kvHeads": "KV 头数",
+    "headDim": "头维度",
+    "kvBytes": "KV 字节数",
+    "context": "上下文长度",
+    "concurrency": "并发数",
+    "group": "来源组",
+    "train": "训练集 %",
+    "validation": "验证集 %",
+    "seed": "划分种子",
+    "vector": "向量",
+    "threshold": "相似度阈值",
+    "k": "排序截断 K",
+    "relevant": "相关文档",
+    "baseline": "基线排行",
+    "candidate": "候选排行",
+    "annotator": "标注员",
+    "minVotes": "最少票数",
+    "agreement": "一致率下限",
+    "parent": "父节点",
+    "start": "开始毫秒",
+    "end": "结束毫秒",
+    "budget": "总预算",
+    "reserve": "回复预留",
+    "tokens": "成本",
+    "value": "价值",
+    "required": "必选"
+  }
+}

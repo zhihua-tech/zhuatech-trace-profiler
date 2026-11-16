@@ -1,0 +1,30 @@
+{
+  "title": "推理性能排查样例",
+  "settings": {},
+  "rows": [
+    {
+      "id": "chat",
+      "parent": "",
+      "start": 0,
+      "end": 350
+    },
+    {
+      "id": "retrieve",
+      "parent": "chat",
+      "start": 10,
+      "end": 150
+    },
+    {
+      "id": "rerank",
+      "parent": "chat",
+      "start": 90,
+      "end": 200
+    },
+    {
+      "id": "infer",
+      "parent": "chat",
+      "start": 200,
+      "end": 340
+    }
+  ]
+}
