@@ -56,6 +56,8 @@ const labels = {
   context: "编排正文",
 };
 const resultLabels = {
+  peakChildren: "直属子调用并发峰值",
+  parallelExcessMs: "并行重叠累计毫秒",
   ...labels,
   ...{
     knownTokens: "词表命中数",

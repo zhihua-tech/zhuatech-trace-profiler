@@ -1,0 +1,30 @@
+{
+  "title": "调用链并行度归因",
+  "settings": {},
+  "rows": [
+    {
+      "id": "r",
+      "parent": "",
+      "start": 0,
+      "end": 100
+    },
+    {
+      "id": "a",
+      "parent": "r",
+      "start": 10,
+      "end": 70
+    },
+    {
+      "id": "b",
+      "parent": "r",
+      "start": 20,
+      "end": 60
+    },
+    {
+      "id": "c",
+      "parent": "r",
+      "start": 30,
+      "end": 50
+    }
+  ]
+}

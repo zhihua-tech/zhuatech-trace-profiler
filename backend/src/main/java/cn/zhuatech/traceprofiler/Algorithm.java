@@ -37,15 +37,24 @@ final class Algorithm {
       }
     }
     var out = new ArrayList<Map<String, Object>>();
+    int batchPeak = 0;
     for (var s : spans.values()) {
       int frontier = s.start(), covered = 0;
+      long childTime = 0;
+      var boundaries = new TreeMap<Integer,Integer>();
       for (var c :
           children.getOrDefault(s.id(), List.of()).stream()
               .sorted(Comparator.comparingInt(Span::start))
               .toList()) {
+        childTime += (long)c.end() - c.start();
+        boundaries.merge(c.start(), 1, Integer::sum);
+        boundaries.merge(c.end(), -1, Integer::sum);
         covered += Math.max(0, c.end() - Math.max(frontier, c.start()));
         frontier = Math.max(frontier, c.end());
       }
+      int live = 0, peak = 0;
+      for (int change : boundaries.values()) { live += change; peak = Math.max(peak,live); }
+      batchPeak = Math.max(batchPeak, peak);
       out.add(
           Map.of(
               "id",
@@ -57,7 +66,7 @@ final class Algorithm {
               "childrenUnionMs",
               covered,
               "selfMs",
-              s.end() - s.start() - covered));
+              s.end() - s.start() - covered, "parallelExcessMs", childTime - covered, "peakChildren", peak));
     }
     out.sort(
         Comparator.comparingInt((Map<String, Object> r) -> (Integer) r.get("selfMs")).reversed());
@@ -67,6 +76,7 @@ final class Algorithm {
             roots.getFirst().end() - roots.getFirst().start(),
             "spans",
             rows.size(),
+            "peakChildren", batchPeak,
             "hottest",
             out.getFirst().get("id")),
         out);

@@ -4,7 +4,13 @@
 
 Validate a single-root, nested trace and union overlapping child intervals before computing exclusive duration. Inspect a ranked breakdown of hotspots. Provide millisecond timestamps from a consistent clock.
 
+## 1.3: business acceptance
+
+Measure direct-child peak concurrency and excess summed child milliseconds over interval union, using half-open intervals. Previously saved results remain unchanged. Re-run a copy to apply the new calculation.
+
 ## Run locally
+
+Optional: run `python3 scripts/doctor.py` to check Java, the local bind address/port, and data directory permissions before launching. Python is not required to run the workbench.
 
 **1.2 update:** JSON imports identify the offending row or field instead of silently dropping unknown columns. Authors may withdraw a pending batch with a reason, retain its input and result, and copy it for correction. Concurrent retries with the same submission key and payload resolve to a single record on MySQL.
 
